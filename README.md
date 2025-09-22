@@ -1,14 +1,7 @@
 # LiveChrono
 
 <p align="center">
-<picture>
-  <!-- Image shown when user prefers dark mode -->
-  <source srcset="assets/logo-dark.png" width="300" media="(prefers-color-scheme: dark)" >
-  <!-- Image shown when user prefers light mode -->
-  <source srcset="assets/logo-light.png" width="300" media="(prefers-color-scheme: light)" >
-  <!-- Fallback for browsers without support -->
   <img src="assets/logo-default.png" alt="My Logo" width="300" style="border-radius: 5px;">
-</picture>
 </p>
 
 LiveChrono is a tiny, dependency-free Python utility that prints a live, updating elapsed-time display to the terminal — with pause/resume support and millisecond precision.  
