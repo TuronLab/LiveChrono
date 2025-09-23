@@ -46,14 +46,14 @@ pip install live-chrono
 
 ## Format Tokens
 
-| Token | Meaning                            |
-| ----- | ---------------------------------- |
-| `%D`  | days (unlimited)                   |
-| `%H`  | hours (zero-padded; can exceed 23) |
-| `%M`  | minutes (00–59)                    |
-| `%S`  | seconds (00–59)                    |
-| `%f`  | milliseconds (000–999)             |
-| `%ms` | alias for milliseconds             |
+| Token | Meaning                |
+| ----- |------------------------|
+| `%D`  | days (unlimited)       |
+| `%H`  | hours (00-23)          |
+| `%M`  | minutes (00–59)        |
+| `%S`  | seconds (00–59)        |
+| `%f`  | milliseconds (000–999) |
+| `%ms` | alias for milliseconds |
 
 > **Note**: Lower units roll over only if you include the higher unit.  
 > Example: a format string with only `%S` may display `120` for two minutes.
@@ -78,7 +78,7 @@ Pause/resume and capture the result:
 from live_chrono import LiveChrono
 import time
 
-with LiveChrono(format_str="Elapsed seconds: %S.%f") as chrono:
+with LiveChrono(format_str="Elapsed: %S seconds and %f ms") as chrono:
     time.sleep(2.30)  # simulate work
     chrono.pause()    # temporary chrono pause  
     time.sleep(1)     # simulate non-relevant work for timer
@@ -88,7 +88,7 @@ with LiveChrono(format_str="Elapsed seconds: %S.%f") as chrono:
 # timer.result is available after the context exits
 res = chrono.result
 print(f"Elapsed seconds: {res.elapsed:.3f}")
-# prints something like: Elapsed seconds: 04.500
+# prints something like: Elapsed: 04 seconds and 500 ms
 ```
 
 Manual start / pause / resume /stop:
