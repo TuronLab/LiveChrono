@@ -42,7 +42,7 @@ class TestLiveChronoExtra(unittest.TestCase):
 
     def test_format_milliseconds_token_works(self):
         # Use the private formatter to avoid relying on printed output
-        t = LiveChrono(format_str="%H:%M:%S.%f")
+        t = LiveChrono(display_format="%H:%M:%S.%f")
         # Simulate 1.123 seconds and check millisecond formatting is zero-padded
         formatted = t._format_elapsed(1.123)
         # Expect "00:00:01.123"
@@ -50,14 +50,14 @@ class TestLiveChronoExtra(unittest.TestCase):
         self.assertIn("00:00:01", formatted)
 
     def test_format_without_ms_token_has_no_fraction(self):
-        t = LiveChrono(format_str="%H:%M:%S")
+        t = LiveChrono(display_format="%H:%M:%S")
         formatted = t._format_elapsed(0.789)
         # No millisecond separator when %f / %ms not present
         self.assertEqual(formatted, "00:00:00")
 
     def test_millisecond_value_matches_elapsed(self):
         # This test actually runs the timer briefly and checks the numeric ms value
-        t = LiveChrono(format_str="%H:%M:%S.%f", update_interval=0.01)
+        t = LiveChrono(display_format="%H:%M:%S.%f", update_interval=0.01)
         # Silence printing to keep test output clean
         buf = io.StringIO()
         with redirect_stdout(buf):

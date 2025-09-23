@@ -11,7 +11,7 @@ class LiveChrono:
     Live-updating elapsed-time display with configurable output format.
     Includes pause/resume controls.
 
-    Format tokens supported in format_str:
+    Format tokens supported in display_format:
       %D   - days (unlimited)
       %H   - hours (00-23)
       %M   - minutes (00-59)
@@ -21,10 +21,10 @@ class LiveChrono:
     Default format: "Elapsed: %H:%M:%S.%f"
     """
 
-    def __init__(self, update_interval: float = 0.1, format_str: str = "Elapsed: %H:%M:%S.%f"):
-        validate_time_format(format_str)
+    def __init__(self, update_interval: float = 0.1, display_format: str = "Elapsed: %H:%M:%S.%f"):
+        validate_time_format(display_format)
         self.update_interval = update_interval
-        self.format_str = format_str
+        self.display_format = display_format
 
         self._start_perf: Optional[float] = None
         self._start_wall: Optional[float] = None
@@ -55,7 +55,7 @@ class LiveChrono:
         total_seconds = int(elapsed)
         milliseconds = int(round((elapsed - total_seconds) * 1000))
 
-        s = self.format_str
+        s = self.display_format
 
         # Decide which units are present
         show_days = "%D" in s
@@ -111,7 +111,8 @@ class LiveChrono:
                         start_time=self._start_wall,
                         end_time=time.time(),
                         elapsed=total,
-                        format_str=self.format_str,
+                        elapsed_format=self._format_elapsed(total),
+                        display_format=self.display_format,
                     )
             # Print final line (move to newline)
             print(f"\r{self._format_elapsed(self.result.elapsed)}")
@@ -123,7 +124,8 @@ class LiveChrono:
                         start_time=self._start_wall,
                         end_time=time.time(),
                         elapsed=self._paused_elapsed,
-                        format_str=self.format_str,
+                        elapsed_format=self._format_elapsed(self._paused_elapsed),
+                        display_format=self.display_format,
                     )
             raise
 

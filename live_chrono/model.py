@@ -8,4 +8,5 @@ class ChronoResult:
     start_time: float       # absolute UNIX timestamp
     end_time: Optional[float] = None
     elapsed: Optional[float] = None
-    format_str: str = ""
+    elapsed_format: Optional[str] = ""
+    display_format: str = ""

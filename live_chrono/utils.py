@@ -1,5 +1,5 @@
 
-def validate_time_format(format_str: str):
+def validate_time_format(display_format: str):
     """
     Validates that the format string does not skip time units.
     Allowed tokens: %D, %H, %M, %S, %f, %ms
@@ -16,10 +16,10 @@ def validate_time_format(format_str: str):
     present = []
     for unit in time_units:
         if unit == "f":
-            if any(token in format_str for token in ms_tokens):
+            if any(token in display_format for token in ms_tokens):
                 present.append(unit)
         else:
-            if token_map[unit] in format_str:
+            if token_map[unit] in display_format:
                 present.append(unit)
 
     if not present:
