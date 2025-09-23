@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="live-chrono",
-    version="0.1.3",
+    version="1.0.0",
     author="Pablo Turon",
     author_email="ptmallor@gmail.com",
     description="Live-updating elapsed timer",
