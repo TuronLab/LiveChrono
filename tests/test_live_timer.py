@@ -4,7 +4,7 @@ import unittest
 from contextlib import redirect_stdout
 
 from live_chrono import LiveChrono
-from utils import validate_time_format
+from live_chrono.utils import validate_time_format
 
 
 class TestLiveChronoExtra(unittest.TestCase):

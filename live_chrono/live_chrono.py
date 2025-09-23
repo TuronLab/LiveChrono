@@ -2,8 +2,8 @@ import time
 import threading
 from typing import Optional
 
-from model import ChronoResult
-from utils import validate_time_format
+from .model import ChronoResult
+from .utils import validate_time_format
 
 
 class LiveChrono:

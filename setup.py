@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="live-chrono",
-    version="0.1.2",
+    version="0.1.3",
     author="Pablo Turon",
     author_email="ptmallor@gmail.com",
     description="Live-updating elapsed timer",
@@ -14,6 +14,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/TuronLab/LiveChrono",
     python_requires=">=3.7",
+    include_package_data=True,
     install_requires=[],
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -23,7 +24,6 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: Utilities",
     ],
-    keywords="timer live elapsed progress",
-    # List the three .py files here, without the .py extension:
-    py_modules=["live_chrono", "utils", "model"],
+    keywords="timer live elapsed progress chrono",
+    packages=["live_chrono"],
 )
