@@ -12,7 +12,8 @@ class LiveChrono:
     Includes pause/resume controls.
 
     Format tokens supported in format_str:
-      %H   - hours (zero-padded, can exceed 23)
+      %D   - days (unlimited)
+      %H   - hours (00-23)
       %M   - minutes (00-59)
       %S   - seconds (00-59)
       %f   - milliseconds (000-999)   <-- new
