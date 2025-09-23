@@ -5,7 +5,7 @@
     <img src="https://raw.githubusercontent.com/turonlab/LiveChrono/master/assets/logo-default.png" alt="LiveChrono logo" width="300" style="border-radius: 5px;">
 </p>
 
-LiveChrono is a tiny, dependency-free Python utility that prints a live, updating elapsed-time display to the terminal — with pause/resume support and millisecond precision.
+LiveChrono is a lightweight, dependency-free Python package that shows a live updating stopwatch in the terminal, with pause/resume support and millisecond precision.
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/turonlab/LiveChrono/master/assets/demo.gif" alt="Demo of LiveChrono in action" width="350">
@@ -15,10 +15,10 @@ LiveChrono is a tiny, dependency-free Python utility that prints a live, updatin
 
 ## Why LiveChrono?
 
-Perfect for CLI scripts, quick profiling, demo timers, and any situation where a human-friendly, live elapsed display is handy.
+Perfect for CLI scripts, quick profiling, demo timers, and any situation where a human-friendly live elapsed display is handy.
 
 - **Tiny & dependency-free** — single module, minimal surface area.
-- **Human-friendly output** — `HH:MM:SS.ms` by default; fully customizable format tokens.
+- **Human-friendly customizable output** — `HH:MM:SS.ms` by default; fully customizable with format tokens.
 - **Interruptible & accurate** — pause/resume support; uses `time.perf_counter()` for elapsed measurement.
 
 ---
@@ -36,10 +36,10 @@ pip install live-chrono
 
 ## Features
 
-- **Live, one-line terminal display** that updates at a configurable interval.
+- **Real-time terminal display on a single line** that updates at a configurable interval.
 - **Customizable format tokens** (see below).
-- **Pause/resume** with multiple cycles — elapsed accumulates only while running.
-- **Context-manager friendly** (`with LiveChrono():`) and usable as an explicit object.
+- **Pause/resume** the chrono to measure the execution time of the desired methods.
+- **Context-manager friendly** (`with LiveChrono()`).
 - Returns a `ChronoResult` object with wall-clock timestamps and elapsed seconds.
 
 ---
@@ -72,13 +72,13 @@ with LiveChrono():
     time.sleep(0.35)
 ```
 
-Pause/resume and capture the result:
+Pause/resume and capture the result with a custom output format:
 
 ```python
 from live_chrono import LiveChrono
 import time
 
-with LiveChrono(format_str="Elapsed: %S seconds and %f ms") as chrono:
+with LiveChrono(display_format="Elapsed: %S seconds and %f ms") as chrono:
     time.sleep(2.30)  # simulate work
     chrono.pause()    # temporary chrono pause  
     time.sleep(1)     # simulate non-relevant work for timer
@@ -97,14 +97,14 @@ Manual start / pause / resume /stop:
 from live_chrono import LiveChrono
 import time
 
-chrono = LiveChrono(format_str="Elapsed: %H:%M:%S.%f", update_interval=0.05)
+chrono = LiveChrono(update_interval=0.05)
 chrono.start()
-time.sleep(0.2)
+time.sleep(0.2)  # simulate work
 
 chrono.pause()  # stop counting, display indicates paused
-time.sleep(0.2)  # this sleep does NOT count toward elapsed
+time.sleep(0.2)  # this work does NOT count for the chrono
 
-chrono.resume()  # continue counting
+chrono.resume()  # continue measuring the elapsed time
 time.sleep(0.15)
 
 result = chrono.stop()  # stops background thread, returns ChronoResult
@@ -117,13 +117,13 @@ print("Final:", result.elapsed)  # float seconds (e.g. 0.35)
 
 ### LiveChrono
 
-`LiveChrono(update_interval=0.1, format_str="Elapsed: %H:%M:%S.%f")`
+`LiveChrono(update_interval=0.1, display_format="Elapsed: %H:%M:%S.%f")`
 
 Create a live-updating timer.
 
 **Parameters**  
 - **update_interval** (*float*, default `0.1`) – Refresh rate in seconds. Lower values update the display more frequently.  
-- **format_str** (*str*, default `"Elapsed: %H:%M:%S.%f"`) – Format string for rendering elapsed time (see format tokens above).
+- **display_format** (*str*, default `"Elapsed: %H:%M:%S.%f"`) – Format string for rendering elapsed time (see format tokens above).
 
 ### Methods
 
@@ -140,7 +140,8 @@ The `ChronoResult` model contains:
 - `start_time`: wall-clock start time (UNIX epoch seconds)
 - `end_time`: wall-clock end time (UNIX epoch seconds)
 - `elapsed`: elapsed time in seconds (float)
-- `format_str`: the format string used
+- `elapsed_format`: elapsed time formated according the `display_format`
+- `display_format`: the format string used
 
 ## Notes & Best Practices
 
