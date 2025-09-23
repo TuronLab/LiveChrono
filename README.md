@@ -160,4 +160,5 @@ You are free to use, copy, modify, merge, publish, distribute, sublicense,
 and/or sell copies of the software, provided that the copyright notice
 and permission notice appear in all copies.
 
-See the [LICENSE](LICENSE) file for the full text.
+See the [LICENSE](https://github.com/TuronLab/LiveChrono/blob/master/LICENSE)
+ file for the full text.
