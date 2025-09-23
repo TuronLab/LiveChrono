@@ -6,13 +6,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="live-chrono",
-    version="0.1.0",
+    version="0.1.2",
     author="Pablo Turon",
     author_email="ptmallor@gmail.com",
     description="Live-updating elapsed timer",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/turonlab/live-chrono",
+    url="https://github.com/TuronLab/LiveChrono",
     python_requires=">=3.7",
     install_requires=[],
     classifiers=[
