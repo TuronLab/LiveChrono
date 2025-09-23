@@ -1,15 +1,15 @@
 # LiveChrono
+[![PyPI version](https://img.shields.io/pypi/v/live-chrono.svg)](https://pypi.org/project/live-chrono/)
 
 <p align="center">
-  <img src="assets/logo-default.png" alt="LiveChrono logo" width="300" style="border-radius: 5px;">
+    <img src="https://raw.githubusercontent.com/turonlab/LiveChrono/master/assets/logo-default.png" alt="LiveChrono logo" width="300" style="border-radius: 5px;">
 </p>
 
 LiveChrono is a tiny, dependency-free Python utility that prints a live, updating elapsed-time display to the terminal — with pause/resume support and millisecond precision.
 
 <p align="center">
-  <img src="assets/demo.gif" alt="Demo of LiveChrono in action" width="350">
+    <img src="https://raw.githubusercontent.com/turonlab/LiveChrono/master/assets/demo.gif" alt="Demo of LiveChrono in action" width="350">
 </p>
-
 
 ---
 
